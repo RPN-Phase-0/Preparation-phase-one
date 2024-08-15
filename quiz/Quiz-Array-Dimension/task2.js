@@ -20,11 +20,13 @@ RULES:
 */
 
 function findNotRelative(arr1, arr2) {
+    let empty = []
     for(let i = 0; i < arr1.length; i++){
-        for(let j = 0; j < arr2.length; j++){
-            
+        if(arr2.includes(arr1[i]) == false){
+            empty.push(arr1[i])
         }
     }
+    return empty
   }
   
   console.log(findNotRelative([3, 6, 10, 12, 15], [1, 3, 5, 10, 16])); // [ 6, 12, 15]

@@ -49,10 +49,7 @@ function minDistanceBetweenGreatest(arr) {
     }
   }
   if(minDistance == Infinity){
-    minDistance = 0
-  }
-  if(minDistance != 0){
-    return minDistance
+    return 0
   }else{
     return minDistance
   }
