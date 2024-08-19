@@ -48,23 +48,58 @@ NOTE:
 
 
 function squareNumber(num) {
-    //code here
-  }
-  
-  console.log(squareNumber(3));
-  // [ [x, o, x],  [o, x, #], [x, #, x] ]
-  
-  console.log(squareNumber(4));
-  // [ [ x, o, x, # ],
-  //   [ #, x, o, x ],
-  //   [ x, o, x, # ],
-  //   [ #, x, o, x ] ]
-  
-  console.log(squareNumber(5));
-  // [ [ x, o, x, #, x ],
-  //   [ o, x, #, x, o ],
-  //   [ x, #, x, o, x ],
-  //   [ #, x, o, x, # ],
-  //   [ x, o, x, #, o ] ]
-  
-  console.log(squareNumber(2)); // Minimal input adalah 3
+    if (num < 3) {
+        return 'Minimal input adalah 3';
+    }
+
+    let board = [];
+    let value = 1;
+
+    for (let i = 0; i < num; i++) {
+        let row = [];
+        for (let j = 0; j < num; j++) {
+            row.push(value);
+            value++;
+        }
+        if (i % 2 !== 0) {
+            row.reverse(); 
+        }
+        board.push(row);
+    }
+
+    for (let i = 0; i < num; i++) {
+        for (let j = 0; j < num; j++) {
+            let currentValue = board[i][j];
+            if (currentValue % 4 === 0) {
+                board[i][j] = '#';
+            } else if (currentValue % 2 === 0) {
+                board[i][j] = 'o';
+            } else {
+                board[i][j] = 'x';
+            }
+        }
+    }
+
+    return board;
+}
+
+// Test cases
+console.log(squareNumber(3));
+// [ [ 'x', 'o', 'x' ],
+//   [ 'o', 'x', '#' ],
+//   [ 'x', '#', 'x' ] ]
+
+console.log(squareNumber(4));
+// [ [ 'x', 'o', 'x', '#' ],
+//   [ '#', 'x', 'o', 'x' ],
+//   [ 'x', 'o', 'x', '#' ],
+//   [ '#', 'x', 'o', 'x' ] ]
+
+console.log(squareNumber(5));
+// [ [ 'x', 'o', 'x', '#', 'x' ],
+//   [ 'o', 'x', '#', 'x', 'o' ],
+//   [ 'x', '#', 'x', 'o', 'x' ],
+//   [ '#', 'x', 'o', 'x', '#' ],
+//   [ 'x', 'o', 'x', '#', 'o' ] ]
+
+console.log(squareNumber(2)); // Minimal input adalah 3

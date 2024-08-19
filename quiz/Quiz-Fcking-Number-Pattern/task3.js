@@ -35,23 +35,43 @@ NOTE:
 **/
 
 function squareNumber(num) {
-    //code here
-  }
-  
-  console.log(squareNumber(3));
-  // [ [ 7, 8, 9 ], [ 6, 5, 4 ], [ 1, 2, 3 ] ]
-  
-  console.log(squareNumber(4));
-  // [ [ 16, 15, 14, 13 ],
-  //   [ 9, 10, 11, 12 ],
-  //   [ 8, 7, 6, 5 ],
-  //   [ 1, 2, 3, 4 ] ]
-  
-  console.log(squareNumber(5));
-  // [ [ 21, 22, 23, 24, 25 ],
-  //   [ 20, 19, 18, 17, 16 ],
-  //   [ 11, 12, 13, 14, 15 ],
-  //   [ 10, 9, 8, 7, 6 ],
-  //   [ 1, 2, 3, 4, 5 ] ]
-  
-  console.log(squareNumber(2)); // Minimal input adalah 3
+    if (num < 3) {
+        return 'Minimal input adalah 3';
+    }
+
+    let board = [];
+    let count = num * num;
+
+    for (let i = 0; i < num; i++) {
+        let row = [];
+        for (let j = 0; j < num; j++) {
+            row.push(count);
+            count--;
+        }
+        if (i % 2 === 0) {
+            row.reverse(); // Membalik urutan pada baris ganjil dari bawah
+        }
+        board.push(row); // Menambahkan baris dari bawah ke atas
+    }
+
+    return board; // Membalikkan urutan baris untuk menempatkan 1 di bagian bawah
+}
+
+// Test cases
+console.log(squareNumber(3));
+// [ [ 7, 8, 9 ], [ 6, 5, 4 ], [ 1, 2, 3 ] ]
+
+console.log(squareNumber(4));
+// [ [ 16, 15, 14, 13 ],
+//   [ 9, 10, 11, 12 ],
+//   [ 8, 7, 6, 5 ],
+//   [ 1, 2, 3, 4 ] ]
+
+console.log(squareNumber(5));
+// [ [ 21, 22, 23, 24, 25 ],
+//   [ 20, 19, 18, 17, 16 ],
+//   [ 11, 12, 13, 14, 15 ],
+//   [ 10, 9, 8, 7, 6 ],
+//   [ 1, 2, 3, 4, 5 ] ]
+
+console.log(squareNumber(2)); // Minimal input adalah 3
