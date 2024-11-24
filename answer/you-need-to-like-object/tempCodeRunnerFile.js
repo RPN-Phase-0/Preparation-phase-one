@@ -1,0 +1,3 @@
+else {
+                        totalCost += kendaraan[kendaraanUser];
+                    }
