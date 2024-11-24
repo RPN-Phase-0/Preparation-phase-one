@@ -1,66 +1,38 @@
-function categorizeNumber(input) {
-    /**
-     * TODO:
-     * Lengkapilah fungsi ini agar dapat menghasilkan output berupa kategori bilangan berdasarkan input yang diberikan.
-     * Dengan ketentuan sebagai berikut:
-     * 1. Jika input bukan number, bangkitkan (throw) error.
-     * 2. Jika input adalah bilangan genap, kembalikan dengan nilai "Genap".
-     * 3. Jika input adalah bilangan ganjil, kembalikan dengan nilai "Ganjil".
-     * 4. Jika input adalah bilangan prima, kembalikan dengan nilai "Prima".
-     * 5. Jika input adalah nol, kategorikan kembalikan dengan nilai "Nol".
-     * 6. Jika input negatif, kembalikan dengan nilai "Negatif".
-     */
-    // 1. Jika input bukan number, bangkitkan (throw) error.
-    if (typeof input !== "number") {
-        throw new Error("Input harus berupa bilangan bulat");
+/*
+
+Diberikan sebuah function palindromeRecursive(sentenc) yang menerima satu parameter.
+Function tersebut akan mengembalikan nilai true jika kata merupakan palindrome, dan false jika bukan.
+Kata palindrome adalah sebuah kata yang jika dibalik, tetap sama.
+Contoh, 'katak' dibalik tetaplah 'katak'.
+
+RULES
+=====
+- Wajib menggunakan metode rekursif
+- Dilarang menambahkan parameter baru
+- Dilarang membuat variable di luar function palindromeRecursive
+- Dilarang mengubah tipe data parameter
+
+*/
+
+
+function palindromeRecursive(sentence) {
+    //code here - saran bikin fungsi rekursif didalam sini
+    //lalu bandingkan dengan sentence
+    // console.log(sentence);
+    if (sentence.length === 0) {
+        return true;
     }
 
-    // 5. Jika input adalah nol, kembalikan nilai "Nol".
-    if (input === 0) {
-        return "Nol";
-    }
-
-    // 6. Jika input negatif, kembalikan nilai "Negatif".
-    if (input < 0) {
-        return "Negatif";
-    }
-
-    // 2. Jika input adalah bilangan genap, kembalikan dengan nilai "Genap".
-    if (input % 2 === 0) {
-        return "Genap";
-    }
-
-    // 3. Jika input adalah bilangan ganjil, periksa apakah itu bilangan prima.
-    if (isPrime(input)) {
-        return "Prima";
+    if (sentence[0] === sentence[sentence.length - 1]) {
+        return palindromeRecursive(sentence.slice(1, sentence.length - 1));
     } else {
-        return "Ganjil";
+        return false;
     }
 }
 
-// Fungsi tambahan untuk mengecek bilangan prima
-function isPrime(num) {
-    if (num <= 1) return false; // 1 atau kurang bukan bilangan prima
-    if (num <= 3) return true; // 2 dan 3 adalah bilangan prima
-    if (num % 2 === 0 || num % 3 === 0) return false;
-
-    // Periksa faktor-faktor lain
-    for (let i = 5; i * i <= num; i += 6) {
-        if (num % i === 0 || num % (i + 2) === 0) return false;
-    }
-
-    return true;
-}
-
-// Contoh
-console.log(categorizeNumber(15)); // Output: "Ganjil"
-console.log(categorizeNumber(12)); // Output: "Genap"
-console.log(categorizeNumber(17)); // Output: "Prima"
-console.log(categorizeNumber(0)); // Output: "Nol"
-console.log(categorizeNumber(-5)); // Output: "Negatif"
-
-try {
-    categorizeNumber('abc');
-} catch (error) {
-    console.log(error.message);
-} // Output: "Input harus berupa bilangan bulat"
+// TEST CASES
+console.log(palindromeRecursive('katak')); // true
+console.log(palindromeRecursive('blanket')); // false
+console.log(palindromeRecursive('civic')); // true
+console.log(palindromeRecursive('kasur rusak')); // true
+console.log(palindromeRecursive('mister')); // false

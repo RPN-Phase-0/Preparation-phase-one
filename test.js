@@ -16,20 +16,22 @@
 // console.log(letters);
 
 // CLASS
-class My {
-    constructor (name, age) {
-        this.name = name
-        this.age = age
+// class My {
+//     constructor (name, age) {
+//         this.name = name
+//         this.age = age
 
-        return `Name: ${this.name}, Age: ${this.age}`
-    }
+//         return `Name: ${this.name}, Age: ${this.age}`
+//     }
 
-    address() {
-        return "Los"
-    }
-}
-let masum = new My("Moh Masum", 20)
-console.log(masum);
-console.log(masum.address());
+//     address() {
+//         return "Los"
+//     }
+// }
+// let masum = new My("Moh Masum", 20)
+// console.log(masum);
+// console.log(masum.address());
 
-
+const f = 'a',
+    s = 'A';
+console.log(f == s); // false
