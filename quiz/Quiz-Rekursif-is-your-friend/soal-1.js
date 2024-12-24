@@ -15,6 +15,17 @@ RULES
 
 function angkaTerbesar(sentence) {
     //code here
+    if (sentence.length === 0) {
+        return -1;
+    }
+    if (sentence.length === 1) {
+        return sentence[0];
+    }
+
+    const first = sentence[0];
+    const maxRest = angkaTerbesar(sentence.slice(1));
+
+    return first > maxRest ? first : maxRest;
 }
 
 // TEST CASES
