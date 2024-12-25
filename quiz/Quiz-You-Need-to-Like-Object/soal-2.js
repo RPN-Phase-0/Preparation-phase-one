@@ -90,7 +90,7 @@ function economyChangeSummary(tradeActivity) {
             }
         }
     }
-    return dataTrade;
+    return dataTrade
 }
 
 
