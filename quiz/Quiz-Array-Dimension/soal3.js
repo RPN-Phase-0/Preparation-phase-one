@@ -33,7 +33,28 @@ RULE:
 */
 
 function minDistanceBetweenGreatest(arr) {
-    
+  let test
+    let largest = arr[0];
+    for(let i = 0; i <= largest; i++){
+      if(arr[i] > largest){
+        largest = arr[i]
+      }
+    }
+    let array = []
+    for(let j = 0; j < arr.length; j++){
+      if(arr[j] == largest){
+        array.push(j)
+      }
+    }
+    if(array.length == 1){
+      return 0
+    }
+    let highest = []
+    for(let k = 0; k < array.length - 1; k++){
+        let distances = array[k+1] - array[k]
+        highest.push(distances)
+    }
+    return highest.sort()[0]
   }
   
   console.log(minDistanceBetweenGreatest([3, 5, 2, 3, 5, 3, 5])); //2
