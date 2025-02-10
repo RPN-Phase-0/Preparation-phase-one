@@ -21,7 +21,7 @@ function consonantCounterRecursive(sentences) {
     }
     sentences = sentences.toLowerCase()
     let firstChar = sentences[0]
-    let number = (firstChar < '9')
+    let number = (firstChar <= '9')
     let count = 0
     if(firstChar !== 'a' && firstChar !== 'i' && firstChar !== 'u' && firstChar !== 'e' && firstChar !== 'o' && firstChar !== ' ' && !number){
         count++
@@ -31,4 +31,4 @@ function consonantCounterRecursive(sentences) {
   
   console.log(consonantCounterRecursive('alDi Suka MakAn baksO')) //10
   console.log(consonantCounterRecursive('AziZy')) // 3
-  console.log(consonantCounterRecursive('awt6an')) // 3
+  console.log(consonantCounterRecursive('awt9an')) // 3
