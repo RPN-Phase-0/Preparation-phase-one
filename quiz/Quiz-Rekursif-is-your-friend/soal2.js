@@ -19,7 +19,14 @@
  */
 
 function changeXRecursive(data, jenis) {
-    //code here
+    if(data == ''){
+      return ''
+    }
+    let firstChar = data[0]
+    let isEven = firstChar == '0' || firstChar == '2' || firstChar == '4' || firstChar == '6' || firstChar == '8'
+    let replace = (jenis == 'ganjil' && isEven) || (jenis === 'genap' && !isEven) ?'x' : firstChar
+
+    return replace + changeXRecursive(data.slice(1), jenis)
   }
   
   console.log(changeXRecursive("012345678922468", "ganjil")); //x1x3x5x7x9xxxxx
