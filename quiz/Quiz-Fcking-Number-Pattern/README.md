@@ -115,11 +115,13 @@ console.log(squareNumber(4));
 //   [ #, x, o, x ] ]
 
 console.log(squareNumber(5));
-// [ [ x, o, x, #, x ],
+// [ 
+//   [ x, o, x, #, x ],
 //   [ o, x, #, x, o ],
-//   [ x, #, x, o, x ],
+//   [ x, o, x, #, x ],
 //   [ #, x, o, x, # ],
-//   [ x, o, x, #, o ] ]
+//   [ x, o, x, #, x ] 
+// ]
 
 console.log(squareNumber(2)); // Minimal input adalah 3
 ```
