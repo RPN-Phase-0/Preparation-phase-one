@@ -98,3 +98,4 @@ console.log(squareNumber(3));
 console.log(squareNumber(4));
 console.log(squareNumber(5));
 console.log(squareNumber(2));
+console.log("jangan jangan lagi pleasee ini mah pleasee banget")
