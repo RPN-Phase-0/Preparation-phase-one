@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f7fc;
+    }
+
+    .todo-container {
+      width: 100%;
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .todo-list li {
+      position: relative;
+      padding: 12px;
+      background-color: #f9f9f9;
+      font-size: 18px;
+      margin: 5px 0;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .todo-list li.checked {
+      background-color: #c2f0c2;
+      text-decoration: line-through;
+    }
+
+    .todo-list li:hover {
+      background-color: #e9e9e9;
+    }
+
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 20px;
+      color: #888;
+      transition: color 0.2s ease;
+    }
+
+    .close-btn:hover {
+      color: #f44336;
+    }
+
+    .action-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .add-btn, .clear-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .add-btn:hover, .clear-btn:hover {
+      background-color: #45a049;
+    }
+
+    .clear-btn {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+
+<div class="todo-container">
+  <h2>My Todo List</h2>
+  <input type="text" id="todoInput" placeholder="Add a new task..." onkeyup="searchTasks()">
+  <input type="text" id="searchInput" placeholder="Search tasks..." onkeyup="searchTasks()">
+  
+  <ul class="todo-list" id="todoList">
+    <li>Walk the dog <span class="close-btn">×</span></li>
+    <li class="checked">Grocery shopping <span class="close-btn">×</span></li>
+    <li>Call mom <span class="close-btn">×</span></li>
+    <li>Read a book <span class="close-btn">×</span></li>
+  </ul>
+
+  <div class="action-btns">
+    <button class="add-btn" onclick="addTask()">Add Task</button>
+    <button class="clear-btn" onclick="clearAllTasks()">Clear All</button>
+  </div>
+</div>
+
+<script>
+// Add task function
+function addTask() {
+  const input = document.getElementById("todoInput");
+  const taskText = input.value.trim();
+  if (taskText === "") {
+    alert("Please enter a task!");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.textContent = taskText;
+
+  const closeBtn = document.createElement("span");
+  closeBtn.textContent = "×";
+  closeBtn.classList.add("close-btn");
+  closeBtn.onclick = function() {
+    li.remove();
+  };
+
+  li.appendChild(closeBtn);
+  document.getElementById("todoList").appendChild(li);
+  input.value = "";
+}
+
+// Search tasks function
+function searchTasks() {
+  const searchInput = document.getElementById("searchInput").value.toUpperCase();
+  const todoList = document.getElementById("todoList");
+  const items = todoList.getElementsByTagName("li");
+
+  for (let i = 0; i < items.length; i++) {
+    const taskText = items[i].textContent || items[i].innerText;
+    if (taskText.toUpperCase().indexOf(searchInput) > -1) {
+      items[i].style.display = "";
+    } else {
+      items[i].style.display = "none";
+    }
+  }
+}
+
+// Clear all tasks function
+function clearAllTasks() {
+  const todoList = document.getElementById("todoList");
+  todoList.innerHTML = "";
+}
+
+// Toggle task completion
+document.getElementById("todoList").addEventListener('click', function(e) {
+  if (e.target.tagName === 'LI') {
+    e.target.classList.toggle('checked');
+  }
+});
+</script>
+
+</body>
+</html>
