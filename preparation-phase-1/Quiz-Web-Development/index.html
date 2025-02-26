@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="mystyle.css">
+</head>
+
+<body>
+
+  <div class="container">
+      
+    <button class="clear-btn" onclick="clearAllTasks()">Clear All</button>
+
+    <div class="add">
+      <input type="text" id="todoInput" placeholder="Add a new task..." onkeyup="searchTasks()">
+      <button class="add-btn" onclick="addTask()">Add Task</button>
+    </div>
+
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Search tasks..." onkeyup="searchTasks()">
+    </div>
+   
+   
+    <ul class="todo-list" id="todoList">
+      <li>Walk the dog <span class="close-btn">×</span></li>
+      <li class="checked">Grocery shopping <span class="close-btn">×</span></li>
+      <li>Call mom <span class="close-btn">×</span></li>
+      <li>Read a book <span class="close-btn">×</span></li>
+    </ul>
+
+  </div>
+
+  <script src="myscripts.js"></script>
+
+</body>
+
+</html>
