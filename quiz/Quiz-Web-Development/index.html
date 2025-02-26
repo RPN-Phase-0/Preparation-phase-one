@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      .header {
+        background-color: #f44336;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+      }
+
+      .header:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        background: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      ul li:nth-child(odd) {
+        background: #f9f9f9;
+      }
+
+      ul li:hover {
+        background: #ddd;
+      }
+
+      ul li.checked {
+        background: #888;
+        color: #fff;
+        text-decoration: line-through;
+      }
+
+      ul li.checked::before {
+        content: "";
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        top: 10px;
+        left: 16px;
+        transform: rotate(45deg);
+        height: 15px;
+        width: 7px;
+      }
+
+      #ul li a {
+        text-decoration: none;
+        color: #2b2b22;
+      }
+
+      input {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        width: 75%;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+      }
+
+      #search {
+        margin: 5px 0px;
+        border: none;
+        border-radius: 0;
+        width: 100%;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+      }
+
+      .add-btn {
+        padding: 10px;
+        width: 25%;
+        background: #d9d9d9;
+        color: #555;
+        float: left;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 0;
+      }
+
+      .add-btn:hover {
+        background-color: #bbb;
+      }
+
+      
+      .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px;
+      }
+
+      .close:hover {
+        background-color: #f44336;
+        color: white;
+      }
+    </style>
+    <title>To Do List</title>
+  </head>
+
+  <body>
+    <div class="header">
+      <h2>My To Do List</h2>
+
+      <input type="text" id="input" placeholder="Title..." />
+      <span onclick="newListFunction()" class="add-btn">Add</span>
+
+      <input
+        type="text"
+        id="search"
+        onkeyup="searchFunction()"
+        placeholder="Search..."
+      />
+    </div>
+
+    <ul id="ul">
+      <li class="checked"><a href="#">Hit the gym</a></li>
+      <li><a href="#">Pay bills</a></li>
+      <li><a href="#">Meet George </a></li>
+      <li class="checked"><a href="#">Buy eggs </a></li>
+      <li><a href="#">Read a book </a></li>
+      <li><a href="#">Organize office </a></li>
+    </ul>
+
+    <script>
+      var list = document.getElementsByTagName("LI");
+      var i;
+      for (i = 0; i < list.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        list[i].appendChild(span);
+      }
+
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.display = "none";
+        };
+      }
+
+      var list = document.querySelector("ul");
+      list.addEventListener(
+        "click",
+        function (ev) {
+          if (ev.target.tagName === "LI") {
+            ev.target.classList.toggle("checked");
+          }
+        },
+        false
+      );
+
+      function newListFunction() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("input").value;
+
+        if (inputValue === "") {
+          alert("You must write something!");
+        } else {
+          var a = document.createElement("a");
+          a.href = "#";
+          a.appendChild(document.createTextNode(inputValue));
+
+          li.appendChild(a);
+          document.getElementById("ul").appendChild(li);
+        }
+        document.getElementById("input").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+          };
+        }
+      }
+
+      function searchFunction() {
+        var input = document.getElementById("search");
+        var filter = input.value.toUpperCase();
+        var ul = document.getElementById("ul");
+        var li = ul.getElementsByTagName("li");
+
+        for (let i = 0; i < li.length; i++) {
+          var a = li[i].getElementsByTagName("a")[0];
+          var txtValue = a.textContent || a.innerText;
+
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
