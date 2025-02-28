@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: white;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 70%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+button {
+  width: 28%;
+  padding: 10px;
+  background: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff79b0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #333;
+  padding: 15px;
+  margin: 5px 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.3s;
+}
+
+ul li:hover {
+  background: #444;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: #ff4081;
+}
+
+.close {
+  cursor: pointer;
+  background: red;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Add a task...">
+    <button onclick="addTask()">Add</button>
+  </div>
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+function addTask() {
+  let input = document.getElementById("taskInput");
+  let taskText = input.value.trim();
+  if (taskText === "") {
+    alert("Please enter a task");
+    return;
+  }
+  
+  let li = document.createElement("li");
+  li.textContent = taskText;
+  li.onclick = function () {
+    li.classList.toggle("checked");
+  };
+
+  let closeBtn = document.createElement("span");
+  closeBtn.textContent = "×";
+  closeBtn.className = "close";
+  closeBtn.onclick = function () {
+    li.remove();
+  };
+  
+  li.appendChild(closeBtn);
+  document.getElementById("taskList").appendChild(li);
+  input.value = "";
+  input.focus();
+}
+</script>
+</body>
+</html>
